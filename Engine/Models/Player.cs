@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
+using Engine.Annotations;
+
+namespace Engine.Models
+{
+    public class Player : INotifyPropertyChanged
+    {
+        private string _name;
+        private string _characterClass;
+        private int _hitPoints;
+        private int _experiencePoints;
+        private int _level;
+        private int _gold;
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value; 
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public string CharacterClass
+        {
+            get => _characterClass;
+            set
+            {
+                _characterClass = value;
+                OnPropertyChanged("CharacterClass");
+            }
+        }
+
+        public int HitPoints
+        {
+            get => _hitPoints;
+            set
+            {
+                _hitPoints = value;
+                OnPropertyChanged("HitPoints");
+            }
+        }
+
+        public int ExperiencePoints
+        {
+            get => _experiencePoints;
+            set
+            {
+                _experiencePoints = value;
+                OnPropertyChanged("ExperiencePoints");
+            }
+        }
+
+        public int Level
+        {
+            get => _level;
+            set
+            {
+                _level = value;
+                OnPropertyChanged("Level");
+            }
+        }
+
+        public int Gold
+        {
+            get => _gold;
+            set
+            {
+                _gold = value;
+                OnPropertyChanged("Gold");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}
